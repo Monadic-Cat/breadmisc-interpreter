@@ -188,3 +188,11 @@ void machine_exec_instruction(struct machine* mach) {
 		mach->regs.rp++;
 	}
 }
+
+// Let's hope it terminates, lol.
+void machine_exec_all(struct machine* mach) {
+	if(!mach->initialized) return;
+   while(mach->regs.rp < mach->mem_size) {
+		machine_exec_instruction(mach);
+	}
+}
