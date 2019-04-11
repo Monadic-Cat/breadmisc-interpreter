@@ -36,11 +36,19 @@ struct instruction {
    uint16_t instruction_specific_data;
 };
 
+void machine_add(struct machine*, uint16_t);
+void machine_move(struct machine*, uint16_t);
+void machine_bitwise_operation(struct machine*, uint16_t);
+void machine_bitwise_shift(struct machine*, uint16_t);
+
+typedef void (*machine_hook)(struct machine*);
+
 // Machine handling utilities
 struct instruction decode_instruction(uint32_t);
 struct machine make_machine(size_t);
 void machine_exec_single(struct machine*);
 void machine_exec_all(struct machine*);
+void machine_exec_handled(struct machine*, machine_hook);
 void machine_debug(struct machine*);
 
 #endif

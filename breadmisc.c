@@ -196,3 +196,11 @@ void machine_exec_all(struct machine* mach) {
       machine_exec_single(mach);
    }
 }
+
+void machine_exec_handled(struct machine* mach, machine_hook hook) {
+   if(!mach->initialized) return;
+   while(mach->regs.rp < mach->mem_size) {
+      hook(mach);
+      machine_exec_single(mach);
+   }
+}
