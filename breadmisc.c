@@ -177,7 +177,7 @@ struct machine make_machine(size_t word_count) {
    return mach;
 }
 
-void machine_exec_instruction(struct machine* mach) {
+void machine_exec_single(struct machine* mach) {
    uint32_t current_instruction = mach->mem[mach->regs.rp];
    // Set instruction pointer to next address.
    mach->regs.rp++;
@@ -193,6 +193,6 @@ void machine_exec_instruction(struct machine* mach) {
 void machine_exec_all(struct machine* mach) {
    if(!mach->initialized) return;
    while(mach->regs.rp < mach->mem_size) {
-      machine_exec_instruction(mach);
+      machine_exec_single(mach);
    }
 }

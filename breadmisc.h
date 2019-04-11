@@ -39,7 +39,7 @@ struct instruction {
 // Machine handling utilities
 struct instruction decode_instruction(uint32_t);
 struct machine make_machine(size_t);
-void machine_exec_instruction(struct machine*);
+void machine_exec_single(struct machine*);
 void machine_exec_all(struct machine*);
 void machine_debug(struct machine*);
 
